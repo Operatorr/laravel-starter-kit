@@ -6,5 +6,5 @@ export default {
     './resources/**/*.js',
   ],
   theme: { extend: {} },
-  plugins: [typography],          // <- here
+  plugins: [typography],
 };

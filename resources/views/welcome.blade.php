@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="garden">
 
 <head>
 	<meta charset="utf-8">
@@ -14,43 +14,86 @@
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="">
-	<h1 class="bg-gray-50 p-4 text-xl text-zinc-500">Tailwind is Working</h1>
-	<div class="p-4" x-data="counter">
-		Simple Counter
-		<p>Count: <span x-text="count"></span></p>
-
-		<button x-on:click="addCount()" class="cursor-pointer bg-gray-100 p-2">Add</button>
+<body class="min-h-screen bg-base-100">
+	<div class="navbar bg-base-200">
+		<div class="navbar-start">
+			<h1 class="btn btn-ghost text-xl">Laravel Starter</h1>
+		</div>
+		<div class="navbar-end">
+			<div x-data="themeSwitcher()" x-init="init()">
+				<div class="dropdown dropdown-end">
+					<div tabindex="0" role="button" class="btn btn-ghost">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5H9m12 0v6m0 6v6M9 5v6m0 6h12"></path>
+						</svg>
+						Theme
+					</div>
+					<ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+						<template x-for="theme in themes" :key="theme.name">
+							<li>
+								<a @click="setTheme(theme.name)" 
+								   :class="{'active': currentTheme === theme.name}"
+								   x-text="theme.label"></a>
+							</li>
+						</template>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card bg-base-100 shadow-xl m-4">
+		<div class="card-body">
+			<h2 class="card-title">Simple Counter</h2>
+			<div x-data="counter">
+				<p class="text-lg">Count: <span class="badge badge-primary" x-text="count"></span></p>
+				<div class="card-actions justify-end">
+					<button x-on:click="addCount()" class="btn btn-primary">Add</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="p-4">
-		<div x-data="{ open: false }">
-			<button @click="open = !open" class="cursor-pointer bg-gray-100 p-2">Toggle</button>
+	<div class="card bg-base-100 shadow-xl m-4">
+		<div class="card-body">
+			<h2 class="card-title">Toggle Component</h2>
+			<div x-data="{ open: false }">
+				<button @click="open = !open" class="btn btn-secondary">Toggle</button>
 
-			<div x-show="open" x-transition class="mt-1 rounded bg-slate-100 p-4">
-				I’m alive!
+				<div x-show="open" x-transition class="alert alert-info mt-4">
+					<span>I'm alive!</span>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<livewire:counter />
 
-	<div class="p-4" x-data="chat">
-		<template x-for="m in messages" :key="m.id">
-			<p>
-				<strong x-text="m.role === 'user' ? 'You:' : 'Bot:'"></strong>
-				<span x-text="m.content"></span>
-			</p>
-		</template>
+	<div class="card bg-base-100 shadow-xl m-4">
+		<div class="card-body" x-data="chat">
+			<h2 class="card-title">Chat Component</h2>
+			<div class="chat-container max-h-60 overflow-y-auto mb-4">
+				<template x-for="m in messages" :key="m.id">
+					<div class="chat" :class="m.role === 'user' ? 'chat-end' : 'chat-start'">
+						<div class="chat-header" x-text="m.role === 'user' ? 'You' : 'Bot'"></div>
+						<div class="chat-bubble" :class="m.role === 'user' ? 'chat-bubble-primary' : 'chat-bubble-secondary'" x-text="m.content"></div>
+					</div>
+				</template>
+			</div>
 
-		<textarea x-model="prompt" class="w-full rounded border"></textarea>
-
-		<button @click="send" :disabled="loading" class="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50">
-			<span x-show="!loading">Send</span>
-			<span x-show="loading">Loading…</span>
-		</button>
+			<div class="form-control">
+				<textarea x-model="prompt" class="textarea textarea-bordered" placeholder="Type your message..."></textarea>
+			</div>
+			<div class="card-actions justify-end mt-4">
+				<button @click="send" :disabled="loading" class="btn btn-primary" :class="{'loading': loading}">
+					<span x-show="!loading">Send</span>
+					<span x-show="loading">Loading…</span>
+				</button>
+			</div>
+		</div>
 	</div>
 
+
+	@livewireScriptConfig
 	<script>
 		function counter() {
 			return {
@@ -136,8 +179,27 @@
 				}
 			}
 		}
+
+		function themeSwitcher() {
+			return {
+				currentTheme: localStorage.getItem('theme') || 'garden',
+				themes: [
+					{ name: 'garden', label: 'Garden' },
+					{ name: 'sunset', label: 'Sunset' }
+				],
+
+				init() {
+					this.setTheme(this.currentTheme)
+				},
+
+				setTheme(theme) {
+					this.currentTheme = theme
+					document.documentElement.setAttribute('data-theme', theme)
+					localStorage.setItem('theme', theme)
+				}
+			}
+		}
 	</script>
-	@livewireScriptConfig
 
 </body>
 
