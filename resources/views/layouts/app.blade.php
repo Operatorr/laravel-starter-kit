@@ -12,6 +12,13 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	@livewireStyles
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
+	
+	<script>
+		// Theme management - global variable in head to persist across navigations
+		window.themeState = window.themeState || {
+			preservedTheme: null
+		};
+	</script>
 </head>
 
 <body class="bg-base-100 min-h-screen">
@@ -77,7 +84,7 @@
 	@stack('scripts')
 
 	<script>
-		// Theme management
+		// Theme management functions
 		async function changeTheme(theme) {
 			// Set theme immediately for better UX
 			document.documentElement.setAttribute('data-theme', theme);
@@ -105,7 +112,13 @@
 		}
 
 		// Load theme on page load
-		document.addEventListener('DOMContentLoaded', async function() {
+		async function loadTheme(forceReload = false) {
+			// If we have a preserved theme from navigation, use it first
+			if (window.themeState.preservedTheme && !forceReload) {
+				document.documentElement.setAttribute('data-theme', window.themeState.preservedTheme);
+				return;
+			}
+
 			let theme = 'garden'; // default
 
 			@auth
@@ -128,6 +141,22 @@
 
 			document.documentElement.setAttribute('data-theme', theme);
 			localStorage.setItem('theme', theme);
+		}
+
+		// Preserve theme before navigation
+		document.addEventListener('livewire:navigating', function() {
+			// Capture current theme before DOM replacement
+			window.themeState.preservedTheme = document.documentElement.getAttribute('data-theme');
+		});
+
+		// Load theme on initial page load
+		document.addEventListener('DOMContentLoaded', function() {
+			loadTheme(true); // Force initial load from server/localStorage
+		});
+		
+		// Restore/ensure theme after navigation
+		document.addEventListener('livewire:navigated', function() {
+			loadTheme(); // Will use preserved theme if available
 		});
 	</script>
 </body>

@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\ThemeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
-use App\Http\Controllers\ThemeController;
 
 Route::get('/', function () {
-    if (!Auth::check()) {
+    if (! Auth::check()) {
         $user = User::first();
         if ($user) {
             Auth::login($user);
         }
     }
+
     return view('home');
 })->name('home');
 

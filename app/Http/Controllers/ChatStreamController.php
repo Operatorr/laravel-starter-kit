@@ -6,7 +6,6 @@ use Illuminate\Http\JsonResponse;
 
 class ChatStreamController extends Controller
 {
-
     public function index(): JsonResponse
     {
         $text = <<<'TEXT'
