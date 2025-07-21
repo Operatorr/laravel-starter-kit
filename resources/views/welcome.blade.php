@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="garden">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 	<meta charset="utf-8">
@@ -14,34 +14,55 @@
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-base-100">
+<body class="bg-base-100 min-h-screen">
 	<div class="navbar bg-base-200">
 		<div class="navbar-start">
 			<h1 class="btn btn-ghost text-xl">Laravel Starter</h1>
 		</div>
-		<div class="navbar-end">
-			<div x-data="themeSwitcher()" x-init="init()">
-				<div class="dropdown dropdown-end">
-					<div tabindex="0" role="button" class="btn btn-ghost">
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5H9m12 0v6m0 6v6M9 5v6m0 6h12"></path>
+		<div class="navbar-center">
+			<ul class="menu bg-base-200 lg:menu-horizontal rounded-box">
+				<li>
+					<a href="/" wire:navigate>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
 						</svg>
-						Theme
-					</div>
-					<ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-						<template x-for="theme in themes" :key="theme.name">
-							<li>
-								<a @click="setTheme(theme.name)" 
-								   :class="{'active': currentTheme === theme.name}"
-								   x-text="theme.label"></a>
-							</li>
-						</template>
-					</ul>
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="/about" wire:navigate>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+						About
+					</a>
+				</li>
+				<li>
+					<a href="/contact" wire:navigate>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+						</svg>
+						Contact
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-end">
+			<div class="dropdown dropdown-end">
+				<div tabindex="0" role="button" class="btn btn-ghost">
+					<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5H9m12 0v6m0 6v6M9 5v6m0 6h12"></path>
+					</svg>
+					Theme
 				</div>
+				<ul tabindex="0" class="dropdown-content z-1 menu bg-base-100 rounded-box w-52 p-2 shadow">
+					<li><a data-set-theme="garden" data-act-class="ACTIVECLASS">🌻 Garden</a></li>
+					<li><a data-set-theme="sunset" data-act-class="ACTIVECLASS">🌅 Sunset</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="card bg-base-100 shadow-xl m-4">
+	<div class="card bg-base-100 m-4 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title">Simple Counter</h2>
 			<div x-data="counter">
@@ -53,7 +74,7 @@
 		</div>
 	</div>
 
-	<div class="card bg-base-100 shadow-xl m-4">
+	<div class="card bg-base-100 m-4 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title">Toggle Component</h2>
 			<div x-data="{ open: false }">
@@ -68,10 +89,10 @@
 
 	<livewire:counter />
 
-	<div class="card bg-base-100 shadow-xl m-4">
+	<div class="card bg-base-100 m-4 shadow-xl">
 		<div class="card-body" x-data="chat">
 			<h2 class="card-title">Chat Component</h2>
-			<div class="chat-container max-h-60 overflow-y-auto mb-4">
+			<div class="chat-container mb-4 max-h-60 overflow-y-auto">
 				<template x-for="m in messages" :key="m.id">
 					<div class="chat" :class="m.role === 'user' ? 'chat-end' : 'chat-start'">
 						<div class="chat-header" x-text="m.role === 'user' ? 'You' : 'Bot'"></div>
@@ -83,8 +104,8 @@
 			<div class="form-control">
 				<textarea x-model="prompt" class="textarea textarea-bordered" placeholder="Type your message..."></textarea>
 			</div>
-			<div class="card-actions justify-end mt-4">
-				<button @click="send" :disabled="loading" class="btn btn-primary" :class="{'loading': loading}">
+			<div class="card-actions mt-4 justify-end">
+				<button @click="send" :disabled="loading" class="btn btn-primary" :class="{ 'loading': loading }">
 					<span x-show="!loading">Send</span>
 					<span x-show="loading">Loading…</span>
 				</button>
@@ -180,25 +201,6 @@
 			}
 		}
 
-		function themeSwitcher() {
-			return {
-				currentTheme: localStorage.getItem('theme') || 'garden',
-				themes: [
-					{ name: 'garden', label: 'Garden' },
-					{ name: 'sunset', label: 'Sunset' }
-				],
-
-				init() {
-					this.setTheme(this.currentTheme)
-				},
-
-				setTheme(theme) {
-					this.currentTheme = theme
-					document.documentElement.setAttribute('data-theme', theme)
-					localStorage.setItem('theme', theme)
-				}
-			}
-		}
 	</script>
 
 </body>
