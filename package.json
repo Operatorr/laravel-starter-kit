@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "dependencies": {
+        "@ryangjchandler/alpine-clipboard": "^2.3.0",
+        "@tailwindcss/vite": "^4.1.5",
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.0",
+        "prismjs": "^1.30.0",
+        "tailwindcss": "^4.1.5",
+        "vite": "^6.0",
+        "vite-plugin-prismjs": "^0.0.11"
+    },
+    "optionalDependencies": {
+        "@rollup/rollup-linux-x64-gnu": "4.9.5",
+        "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
+        "lightningcss-linux-x64-gnu": "^1.29.1"
+    },
+    "devDependencies": {
+        "@alpinejs/persist": "^3.14.9",
+        "@defstudio/vite-livewire-plugin": "^2.0.6",
+        "@tailwindcss/typography": "^0.5.16",
+        "alpinejs": "^3.14.9"
+    }
+}
