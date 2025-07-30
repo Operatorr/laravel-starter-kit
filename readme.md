@@ -10,6 +10,8 @@
 
 ![Laravel Starter Kit Screenshot](public/landing.png)
 
+![Chat functionality Screenshot](public/chat.png)
+
 ---
 
 This starter kit provides a quick foundation for building Laravel apps, emphasizing a straightforward development experience with **Livewire** and **Alpine.js**. It uses **TailwindCSS 4** with **DaisyUI** for UI components, all bundled with **Vite**.
@@ -18,6 +20,7 @@ Unlike some other starter kits, because I'm opinonated against x-layout x-compon
 
 Has a working theme switcher with DaisyUI.
 Theme choice saves to user record in database. Page switching with wire:navigates works and preservs theme selection.
+
 Has AI functionality with openai-php/client and OpenRouter with a demo chat wrapper.
 
 ## Features
