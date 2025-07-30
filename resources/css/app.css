@@ -1,9 +1,16 @@
 @import 'tailwindcss';
 
 @plugin "daisyui" {
-  themes: garden --default, sunset;
+  themes: pastel --default, synthwave;
 }
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
+pre {
+  @apply bg-base-300 text-base-content my-4 p-4 rounded overflow-x-auto;
+}
+
+code {
+  @apply text-sm leading-relaxed;
+}

@@ -41,4 +41,10 @@ return [
         'redirect_url' => env('WORKOS_REDIRECT_URL'),
     ],
 
+    'openrouter' => [
+        'key' => env('OPENROUTER_API_KEY'),
+        'host' => env('OPENROUTER_API_HOST', "https://openrouter.ai/api/v1"),
+        'model' => env('OPENROUTER_AI_MODEL', "openai/gpt-4.1-nano"),
+    ],
+
 ];

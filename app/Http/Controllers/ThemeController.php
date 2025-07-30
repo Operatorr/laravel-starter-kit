@@ -14,7 +14,7 @@ class ThemeController extends Controller
     public function update(Request $request): JsonResponse
     {
         $request->validate([
-            'theme' => 'required|string|in:garden,sunset',
+            'theme' => 'required|string|in:pastel,synthwave',
         ]);
 
         if (Auth::check()) {
@@ -41,12 +41,12 @@ class ThemeController extends Controller
     {
         if (Auth::check()) {
             return response()->json([
-                'theme' => Auth::user()->theme ?? 'garden',
+                'theme' => Auth::user()->theme ?? 'pastel',
             ]);
         }
 
         return response()->json([
-            'theme' => 'garden',
+            'theme' => 'pastel',
         ]);
     }
 }

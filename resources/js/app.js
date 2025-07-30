@@ -6,6 +6,11 @@ import { Livewire /*, Alpine*/ } from '../../vendor/livewire/livewire/dist/livew
 import Alpine from 'alpinejs'
 import persist from '@alpinejs/persist'   // optional plugin
 
+import { marked }   from 'marked'
+import DOMPurify    from 'dompurify'
+
+window.md2html = (raw) => DOMPurify.sanitize(marked.parse(raw))
+
 Alpine.plugin(persist)                   // register plugins *before* start()
 window.Alpine = Alpine                  // exposes it to inline scripts if you need
 

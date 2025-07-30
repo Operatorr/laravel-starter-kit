@@ -16,6 +16,10 @@ This starter kit provides a quick foundation for building Laravel apps, emphasiz
 
 Unlike some other starter kits, because I'm opinonated against x-layout x-component this and that that the current official laravel starter kit comes with. Hundreds of files. This project intentionally avoids complex frontend frameworks like Flux and adheres to **traditional Blade layouts** using `@extends('layouts.app')` and `@section('content')` for simplicity and familiarity. Just go. Fast.
 
+Has a working theme switcher with DaisyUI.
+Theme choice saves to user record in database. Page switching with wire:navigates works and preservs theme selection.
+Has AI functionality with openai-php/client and OpenRouter with a demo chat wrapper.
+
 ## Features
 
 * **Laravel 12**: The latest version.

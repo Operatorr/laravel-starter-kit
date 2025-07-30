@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatStreamController;
 use App\Http\Controllers\ThemeController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::post('/chat/stream', [ChatStreamController::class])->name('chat.stream');
+Route::post('/chat/stream', [ChatStreamController::class, 'stream'])->name('chat.stream');
+Route::get('/chat', [ChatStreamController::class, 'chat'])->name('chat.test');
 
 // Theme routes
 Route::post('/theme/update', [ThemeController::class, 'update'])->name('theme.update');
