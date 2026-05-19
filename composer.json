@@ -1,13 +1,22 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "operatorr/laravel-starter-kit",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "A Laravel starter kit with Livewire, Alpine.js, Tailwind CSS, DaisyUI, WorkOS, and OpenRouter-ready chat.",
     "keywords": [
         "laravel",
-        "framework"
+        "starter-kit",
+        "livewire",
+        "alpinejs",
+        "tailwindcss",
+        "daisyui"
     ],
     "license": "MIT",
+    "homepage": "https://github.com/Operatorr/laravel-starter-kit",
+    "support": {
+        "issues": "https://github.com/Operatorr/laravel-starter-kit/issues",
+        "source": "https://github.com/Operatorr/laravel-starter-kit"
+    },
     "require": {
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.9",
@@ -54,7 +63,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
+            "@php artisan migrate --seed --graceful --ansi"
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",

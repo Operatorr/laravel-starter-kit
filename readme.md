@@ -4,9 +4,9 @@
 [![Livewire](https://img.shields.io/badge/Livewire-3.x-4E64E9?style=for-the-badge&logo=livewire&logoColor=white)](https://livewire.laravel.com/)
 [![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=white)](https://alpinejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![DaisyUI](https://img.shields.io/badge/DaisyUI-4.x-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)](https://daisyui.com/)
+[![DaisyUI](https://img.shields.io/badge/DaisyUI-5.x-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)](https://daisyui.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16.x-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
 ![Laravel Starter Kit Screenshot](public/landing.png)
 
@@ -38,46 +38,56 @@ Has AI functionality with openai-php/client and OpenRouter with a demo chat wrap
 
 ## Getting Started
 
-Setup reminder:
+### Preferred: Laravel Installer
 
-### Installation Steps
+This is the recommended Laravel starter kit flow. The package must be published on Packagist as `operatorr/laravel-starter-kit`.
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone [https://github.com/your-username/laravel-livewire-alpine-starter.git](https://github.com/your-username/laravel-livewire-alpine-starter.git)
-    cd laravel-livewire-alpine-starter
-    ```
+```bash
+composer global require laravel/installer
+laravel new my-app --using=operatorr/laravel-starter-kit
+cd my-app
+npm install
+npm run build
+composer run dev
+```
 
-2.  **Environment Configuration:**
-    ```bash
-    cp .env.example .env
-    ```
+The Composer post-create scripts copy `.env`, generate `APP_KEY`, create `database/database.sqlite`, run migrations, and seed the starter user.
 
-3.  **Install PHP Dependencies:**
-    ```bash
-    composer install
-    ```
+### Classic: Composer Create Project
 
-4.  **Generate Application Key:**
-    ```bash
-    php artisan key:generate
-    ```
+```bash
+composer create-project operatorr/laravel-starter-kit my-app
+cd my-app
+npm install
+npm run build
+composer run dev
+```
 
-5.  **Database Setup:**
-    First create database.sqlite. Only switch out to pgSQL when you need to.
-    ```bash
-    php artisan migrate --seed
-    ```
+### Local Development From Git
 
-6.  **Frontend Dependencies:**
-    ```bash
-    npm install
-    ```
+Use this when working on the starter kit itself before it has been published to Packagist, or when testing unpublished changes.
 
-7.  **Build Assets:**
-    ```bash
-    npm run build
-    ```
+```bash
+git clone https://github.com/Operatorr/laravel-starter-kit.git my-app
+cd my-app
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+npm install
+npm run build
+composer run dev
+```
+
+### Publishing Checklist
+
+Both `laravel new --using=operatorr/laravel-starter-kit` and `composer create-project operatorr/laravel-starter-kit my-app` depend on the same Packagist package.
+
+1. Push this repository to GitHub.
+2. Submit `https://github.com/Operatorr/laravel-starter-kit` to Packagist.
+3. Tag a stable release, for example `v1.0.0`, so Composer can install it without requiring a dev constraint.
+4. Keep the `composer.json` package name as `operatorr/laravel-starter-kit`.
 
 Visit the site in your web browser. (I use Herd)
 
