@@ -1,6 +1,6 @@
 # Laravel Livewire Alpine Starter
 
-[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
+[![Laravel](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
 [![Livewire](https://img.shields.io/badge/Livewire-3.x-4E64E9?style=for-the-badge&logo=livewire&logoColor=white)](https://livewire.laravel.com/)
 [![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=white)](https://alpinejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -25,7 +25,7 @@ Has AI functionality with openai-php/client and OpenRouter with a demo chat wrap
 
 ## Features
 
-* **Laravel 12**: The latest version.
+* **Laravel 13**: The latest version.
 * **Livewire 3**: For extra dynamic stuff, or SEO stuff since dynamic things with alpine isnt.
 * **Alpine.js**: You can do everything, everything, with Alpine, why complicate things with React?.
 * **PostgreSQL**: Or Supabase.
